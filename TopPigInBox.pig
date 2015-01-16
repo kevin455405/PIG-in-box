@@ -5,5 +5,6 @@ result = group data by name;
 result = foreach result generate COUNT(data) as count, group;
 result = order result by count desc;
 result = foreach result generate group;
-result = LIMIT result 101;
+result = limit result 101;
+result = foreach result generate REPLACE(group, '"', '') as name;
 store result into '$output';
